@@ -7,8 +7,20 @@ import { useLocalStorage } from './lib/useLocalStorage'
 import { calcItemPrice } from './lib/format'
 
 const DEFAULT_PRODUCTS = [
-  { id: 'p1', name: '4" hitam ad', price: 230000 },
-  { id: 'p2', name: 'Ornamen', price: 60000 }
+  { id: 'p1', name: '4" PROFIL', price: 240000 },
+  { id: 'p2', name: '3" PROFIL', price: 190000 },
+  { id: 'p3', name: '4" OPENBACK', price: 250000 },
+  { id: 'p4', name: '3" OPENBACK', price: 200000 },
+  { id: 'p5', name: '4" OPENBACK + STOPER', price: 320000 },
+  { id: 'p6', name: '3" OPENBACK + STOPER', price: 260000 },
+  { id: 'p7', name: 'TUTUP M 4"', price: 190000 },
+  { id: 'p8', name: 'TUTUP M 3"', price: 160000 },
+  { id: 'p9', name: 'DAUN 8 CM & 6 CM', price: 360000 },
+  { id: 'p10', name: 'DAUN 5 CM', price: 310000 },
+  { id: 'p11', name: 'STOPER', price: 60000 },
+  { id: 'p12', name: 'ORNAMEN', price: 60000 },
+  { id: 'p13', name: 'MAHKOTA', price: 150000 },
+  { id: 'p14', name: 'TRANSOME / CURTAINWALL', price: 370000 }
 ]
 
 export default function App() {
