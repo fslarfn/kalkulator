@@ -3,6 +3,12 @@ export const PI = 3.14
 export const SAMBUNGAN_CM = 30
 export const OVERSIZE_CM = 600 // > 6m, tambah 30cm lagi
 
+// Aturan khusus Metode 2 (setengah lingkaran):
+// lebar 60–75 cm memakai material standar minimum 1,5 m
+export const STANDAR_LEBAR_MIN = 60
+export const STANDAR_LEBAR_MAX = 75
+export const STANDAR_MATERIAL_CM = 150
+
 export const METHODS = {
   1: { id: 1, label: 'Kurang dari ½ lingkaran', short: 'Kurang ½' },
   2: { id: 2, label: 'Setengah lingkaran pas', short: 'Pas ½' },
@@ -53,7 +59,7 @@ export function calculate(method, lebar, tinggi) {
   // METODE 2: Setengah lingkaran pas
   if (method === 2) {
     const arc = half * PI
-    const cm = arc + SAMBUNGAN_CM
+    let cm = arc + SAMBUNGAN_CM
     const steps = [
       { label: 'Lebar ÷ 2', val: `${fmtCm(L)} ÷ 2 = ${fmtCm(half)} cm` },
       { label: '× 3,14', val: `${fmtCm(half)} × 3,14 = ${fmtCm(arc)} cm` },
@@ -64,6 +70,13 @@ export function calculate(method, lebar, tinggi) {
     if (Math.abs(T - half) > 0.5) {
       msg = `Tinggi seharusnya ${fmtCm(half)} cm untuk setengah lingkaran pas. Hasil dihitung dari Lebar.`
       msgType = 'warn'
+    }
+    // Aturan khusus: lebar 60–75 cm memakai material standar minimum 1,5 m (150 cm)
+    if (L >= STANDAR_LEBAR_MIN && L <= STANDAR_LEBAR_MAX && cm < STANDAR_MATERIAL_CM) {
+      cm = STANDAR_MATERIAL_CM
+      steps.push({ label: 'Standar lebar 60–75 cm', val: '150 cm (1,5 m)' })
+      msg = 'Lebar 60–75 cm: material standar minimum 1,5 m diterapkan.'
+      msgType = 'info'
     }
     return { ok: true, cm, steps, msg, msgType }
   }
