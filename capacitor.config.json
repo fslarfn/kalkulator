@@ -1,0 +1,8 @@
+{
+  "appId": "com.totoaluminium.kalkulator",
+  "appName": "Toto Kalkulator",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}
