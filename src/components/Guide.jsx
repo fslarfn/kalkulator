@@ -19,10 +19,7 @@ const METHODS_INFO = [
   }
 ]
 
-export default function Guide({ waNumber }) {
-  const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
-    'Halo Toto Aluminium, saya mau minta bantuan hitung kebutuhan material bending.'
-  )}`
+export default function Guide() {
   return (
     <section className="mt-8">
       <div className="text-center mb-5">
@@ -48,14 +45,6 @@ export default function Guide({ waNumber }) {
           </div>
         ))}
       </div>
-
-      <p className="text-center text-sm text-brand-600 mt-6 px-2">
-        Bingung pilih metode yang mana? Kirim foto atau sketsa desain Anda ke{' '}
-        <a href={waLink} target="_blank" rel="noreferrer" className="font-semibold text-brand-800 underline">
-          WhatsApp
-        </a>
-        , tim kami bantu hitungkan gratis.
-      </p>
     </section>
   )
 }
