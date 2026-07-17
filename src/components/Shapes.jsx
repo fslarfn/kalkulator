@@ -32,22 +32,13 @@ export function ArchIcon({ type, className, active }) {
   )
 }
 
-// Logo mark sederhana bergaya arch/segitiga untuk header
+// Logo asli CV. Toto Aluminium Manufacture (dari public/logo.png)
 export function Logo({ className }) {
   return (
-    <svg viewBox="0 0 48 48" className={className} fill="none" aria-hidden="true">
-      <path
-        d="M24 5 L41 40 H31 L24 24 L17 40 H7 Z"
-        stroke="#6f4a29"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M24 15 L33 34 H27 L24 27 L21 34 H15 Z"
-        stroke="#a67844"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <img
+      src="/logo.png"
+      alt="Logo Toto Aluminium Manufacture"
+      className={`${className} object-contain`}
+    />
   )
 }
