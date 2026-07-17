@@ -1,6 +1,6 @@
 # Toto Bending Calculator
 
-Web app PWA untuk menghitung harga aluminium bending dengan 3 metode perhitungan, manajemen produk, dan pembuatan quotation siap kirim ke WhatsApp.
+Kalkulator aluminium bending Toto Aluminium Manufacture — web app PWA + mobile app Android (Capacitor) dengan 3 metode perhitungan dan pembuatan quotation siap kirim ke WhatsApp. Tampilan terang mengikuti gaya website perusahaan.
 
 ## Fitur
 
@@ -8,11 +8,12 @@ Web app PWA untuk menghitung harga aluminium bending dengan 3 metode perhitungan
   1. Kurang dari setengah lingkaran: `L + T + 30 cm`
   2. Setengah lingkaran pas: `(L÷2) × 3,14 + 30 cm`
   3. Lebih dari setengah lingkaran: `(L÷2) × 3,14 + 2×(T − L÷2) + 30 cm` (auto +30cm jika > 6m)
-- **Manajemen produk** — tambah/edit/hapus, harga per meter
+- **Input bebas** — nama item dan harga per meter diisi langsung saat menghitung (tidak ada lagi daftar produk); nama & harga terakhir diingat otomatis
 - **Quotation multi-item** dengan format output gaya WhatsApp Anda
 - **Tombol "Kirim via WA"** — langsung buka WhatsApp dengan teks ter-format
 - **History quotation** — tersimpan permanen di device
 - **PWA penuh** — install ke home screen, jalan offline
+- **Mobile app Android** — bisa di-build menjadi APK lewat Capacitor
 - **localStorage** — semua data tersimpan lokal di browser, tidak ada server
 
 ## Format Output WhatsApp
@@ -98,10 +99,34 @@ Setelah deploy:
 
 App akan jalan offline penuh setelah pertama kali dibuka.
 
+## Build APK Android (Capacitor)
+
+Butuh **Android Studio** (atau minimal Android SDK + JDK 17).
+
+```bash
+npm install
+npm run android:open   # build web + sync + buka di Android Studio
+```
+
+Dari Android Studio: **Build → Build Bundle(s)/APK(s) → Build APK(s)**.
+
+Atau langsung dari terminal (butuh Android SDK ter-install, set `ANDROID_HOME`):
+
+```bash
+npm run android:apk
+```
+
+APK debug ada di `android/app/build/outputs/apk/debug/app-debug.apk` — bisa langsung di-install ke HP Android (aktifkan "Install dari sumber tidak dikenal").
+
+Untuk rilis ke Play Store, buat keystore lalu build `bundleRelease` dari Android Studio.
+
+Setiap kali mengubah kode web, jalankan `npm run android:sync` agar perubahan masuk ke project Android.
+
 ## Struktur Project
 
 ```
 toto-bending/
+├── android/                 # Project Android native (Capacitor)
 ├── public/                  # Static assets, icons PWA
 │   ├── icon-192.png
 │   ├── icon-512.png
@@ -110,7 +135,6 @@ toto-bending/
 ├── src/
 │   ├── components/
 │   │   ├── Calculator.jsx   # Tab kalkulator
-│   │   ├── Products.jsx     # Tab manajemen produk
 │   │   ├── Quotation.jsx    # Tab quotation
 │   │   └── History.jsx      # Tab history
 │   ├── lib/
@@ -121,6 +145,7 @@ toto-bending/
 │   ├── App.jsx
 │   └── main.jsx
 ├── index.html
+├── capacitor.config.json    # Konfigurasi Capacitor (app id & nama)
 ├── vite.config.js           # Konfigurasi Vite + PWA plugin
 ├── tailwind.config.js
 ├── postcss.config.js
